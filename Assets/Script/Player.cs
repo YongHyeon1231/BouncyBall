@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -5,6 +6,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public float moveSpeed = 1;
     public float jumpForce = 1;
+    public GameObject panel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,10 +20,27 @@ public class Player : MonoBehaviour
         
         rb.linearVelocityX = h * moveSpeed;
         
+        if (transform.position.y < -10)
+        {
+            rb.linearVelocity = Vector2.zero;
+            transform.position = new Vector3(-5.26f, 7.75f, 0);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.AddForceY(1 * jumpForce);
+        if(collision.gameObject.CompareTag("obstacle"))
+        {
+            print("Game Over");
+            transform.position = new Vector3(-5.26f, 7.75f, 0);
+        } else if(collision.gameObject.CompareTag("Finish"))
+        {
+            panel.SetActive(true);
+            panel.GetComponentInChildren<TextMeshProUGUI>().text = "Game Clear!";
+            print("Game Clear");
+        } else
+        {
+            rb.AddForceY(1 * jumpForce);
+        }
     }
 }
