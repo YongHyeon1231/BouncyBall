@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(-5.26f, 7.75f, 0);
         } else if(collision.gameObject.CompareTag("Finish"))
         {
+            Time.timeScale = 0;
             panel.SetActive(true);
             panel.GetComponentInChildren<TextMeshProUGUI>().text = "Game Clear!";
             print("Game Clear");
