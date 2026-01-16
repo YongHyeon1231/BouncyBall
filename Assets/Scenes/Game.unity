@@ -1668,6 +1668,9 @@ MonoBehaviour:
   moveSpeed: 3
   jumpForce: 300
   panel: {fileID: 317603513}
+  stars:
+  - {fileID: 2060442732}
+  - {fileID: 565066748}
 --- !u!1 &1554324850
 GameObject:
   m_ObjectHideFlags: 0
